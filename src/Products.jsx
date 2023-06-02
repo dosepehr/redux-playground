@@ -4,7 +4,7 @@ const Products = () => {
     return (
         <ul>
             {store.map((item) => (
-                <li key={crypto.randomUUID()}>{item}</li>
+                <li key={item.id}>{item.title}</li>
             ))}
         </ul>
     );

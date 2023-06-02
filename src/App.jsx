@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addProductAction } from './redux/store/Products';
+import {
+    addProductAction,
+    getProductsFromServerAction,
+} from './redux/store/Products';
 import './App.css';
 import Products from './Products';
 export default function App() {
@@ -18,6 +21,17 @@ export default function App() {
             />
             <button onClick={() => dispatch(addProductAction(productName))}>
                 add product
+            </button>
+            <button
+                onClick={() =>
+                    dispatch(
+                        getProductsFromServerAction(
+                            'https://fakestoreapi.com/products'
+                        )
+                    )
+                }
+            >
+                get data from API
             </button>
             <Products />
         </>
