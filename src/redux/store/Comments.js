@@ -1,7 +1,7 @@
 const addComment = 'ADD_COMMENT';
 const removeComment = 'REMOVE_COMMENT';
 
-export default reducer = (state = [], action) => {
+export default (state = [], action) => {
     switch (action.type) {
         case addComment: {
             let newComment = action.payload;
@@ -9,6 +9,9 @@ export default reducer = (state = [], action) => {
         }
         case removeComment: {
             return [...state].filter((comment) => comment.id !== action.id);
+        }
+        default: {
+            return state;
         }
     }
 };

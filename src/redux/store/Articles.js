@@ -1,14 +1,17 @@
 const addArticle = 'ADD_ARTICLE';
 const removeArticle = 'REMOVE_ARTICLE';
 
-export default reducer = (state = [], action) => {
+export default (state = [], action) => {
     switch (action.type) {
         case addArticle: {
             let newArticle = action.payload;
             return [...state, newArticle];
         }
         case removeArticle: {
-            return [...state].filter((Article) => Article.id !== action.id);
+            return [...state].filter((article) => article.id !== action.id);
+        }
+        default: {
+            return state;
         }
     }
 };
