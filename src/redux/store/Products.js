@@ -5,7 +5,10 @@ const getProductsSuccess = 'GET_PRODUCTS_SUCCESS';
 export default (state = [], action) => {
     switch (action.type) {
         case addProduct: {
-            let newProduct = action.payload;
+            let newProduct = {
+                title: action.payload,
+                id: crypto.randomUUID(),
+            };
             return [...state, newProduct];
         }
         case removeProduct: {
