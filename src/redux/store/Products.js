@@ -12,7 +12,7 @@ const slice = createSlice({
             state.push(newProduct);
         },
         removeProduct: (state, action) => {
-            return state.filter((product) => product.id !== action.id);
+            return state.filter((product) => product.id !== action.payload);
         },
     },
 });
