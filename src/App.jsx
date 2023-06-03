@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-    addProductAction,
-    getProductsFromServerAction,
+    addProduct,
 } from './redux/store/Products';
 import './App.css';
 import Products from './Products';
@@ -19,10 +18,10 @@ export default function App() {
                 id=''
                 onChange={(e) => setProductName(e.target.value)}
             />
-            <button onClick={() => dispatch(addProductAction(productName))}>
+            <button onClick={() => dispatch(addProduct(productName))}>
                 add product
             </button>
-            <button
+            {/* <button
                 onClick={() =>
                     dispatch(
                         getProductsFromServerAction(
@@ -32,7 +31,7 @@ export default function App() {
                 }
             >
                 get data from API
-            </button>
+            </button> */}
             <Products />
         </>
     );

@@ -1,52 +1,21 @@
-const addProduct = 'ADD_PRODUCT';
-const removeProduct = 'REMOVE_PRODUCT';
-const getProductsSuccess = 'GET_PRODUCTS_SUCCESS';
+import { createSlice } from '@reduxjs/toolkit';
 
-export default (state = [], action) => {
-    switch (action.type) {
-        case addProduct: {
+const slice = createSlice({
+    name: 'Products',
+    initialState: [],
+    reducers: {
+        addProduct: (state, action) => {
             let newProduct = {
                 title: action.payload,
                 id: crypto.randomUUID(),
             };
-            return [...state, newProduct];
-        }
-        case removeProduct: {
-            return [...state].filter((product) => product.id !== action.id);
-        }
-        case getProductsSuccess: {
-            return [...state, ...action.payload];
-        }
-        default: {
-            return state;
-        }
-    }
-};
+            state.push(newProduct);
+        },
+        removeProduct: (state, action) => {
+            return state.filter((product) => product.id !== action.id);
+        },
+    },
+});
 
-export const addProductAction = (payload) => {
-    return {
-        type: addProduct,
-        payload,
-    };
-};
-
-export const removeProductAction = (id) => {
-    return {
-        type: removeProduct,
-        id,
-    };
-};
-
-export const getProductsSuccessAction = (data) => {
-    return {
-        type: getProductsSuccess,
-        payload: data,
-    };
-};
-export const getProductsFromServerAction = (url) => {
-    return (dispatch, getState) => {
-        fetch(url)
-            .then((res) => res.json())
-            .then((data) => dispatch(getProductsSuccessAction(data)));
-    };
-};
+export const { addProduct, removeProduct } = slice.actions;
+export default slice.reducer;
